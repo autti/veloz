@@ -1,6 +1,9 @@
 import struct
 import socket
 import time
+import capnp
+
+from car_capnp import CarState, RadarState, CarControl
 
 class Bus:
     # message that belong to this bus
@@ -308,46 +311,55 @@ def parse(db=None):
     return b
 
 
-dev = SocketCanDev('can0')
-dev.start()
+if __name__ == "__main__":
 
-dev_send = SocketCanDev('vcan0')
-dev_send.start()
+    dev = SocketCanDev('can0')
+    dev.start()
 
-DECODER = {
-    "messages": [
-        {
-        "name": "Steering Report",
-        "id": "0x3A8",
-        "signals": {
-                    "16": {"name": "Steering Angle", "bit_length": 16},
-                   }
-        }
-    ]
-}
+    dev_send = SocketCanDev('vcan0')
+    dev_send.start()
+
+    DECODER = {
+        "messages": [
+            {
+            "name": "Steering Report",
+            "id": "0x3A8",
+            "signals": {
+                        "16": {"name": "Steering Angle", "bit_length": 16},
+                    }
+            }
+        ]
+    }
 
 
 
-b = parse(db=DECODER)
-filter = False
+    b = parse(db=DECODER)
+    filter = False
 
-while True:
-    frame =dev.recv()
-    code = frame._arb_id
-    data = frame._data
-    timestamp = frame.timestamp
-    hbeam_id = 0x83
-    if code == hbeam_id and data[0] == 0x00:
-        filter = True
-    elif code == hbeam_id and data[0] == 0x00:
-        filter = False
+    car_state = CarState.new_message()
 
-    if filter:
-        msg = '(%s) %s#%s' % (timestamp, code, data)
-        dev_send.send(frame)
+    while True:
+        frame =dev.recv()
+        code = frame._arb_id
+        data = frame._data
+        timestamp = frame.timestamp
+        hbeam_id = 0x83
+
+
         if code == 0x3A8:
             signals = b.parse_frame(frame)
             if signals:
                 for s in signals:
-                    print(s)
-                    print(data[2:4])
+                    if s.name == "Steering Angle":
+                        car_state.steeringAngle = s.value
+
+        if code == hbeam_id and data[0] == 0x40:
+            filter = True
+        elif code == hbeam_id and data[0] == 0x00:
+            filter = False
+
+        if filter:
+            msg = '(%s) %s#%s' % (timestamp, code, data)
+            dev_send.send(frame)
+
+            print(car_state)
