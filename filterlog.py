@@ -272,11 +272,11 @@ class SocketCanDev:
 # Max left
 # Value = 24631
 #[55, 96]
-# Max rigt 
+# Max rigt
 #Signal: Steering Angle
 # Value = 8470
 #[22, 33]
-## 
+##
 
 
 def parse(db=None):
@@ -299,7 +299,7 @@ def parse(db=None):
             if 'factor' in sig:
                 s.factor = float(sig['factor'])
 
-	    # add this signal to the message
+            # add this signal to the message
             m.add_signal(s, int(start_bit))
 
         # add this message to the bus
@@ -307,10 +307,11 @@ def parse(db=None):
 
     return b
 
-dev = SocketCanDev('vcan0')
+
+dev = SocketCanDev('can0')
 dev.start()
 
-dev_send = SocketCanDev('vcan1')
+dev_send = SocketCanDev('vcan0')
 dev_send.start()
 
 DECODER = {
