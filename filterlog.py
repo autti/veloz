@@ -307,8 +307,11 @@ def parse(db=None):
 
     return b
 
-dev = SocketCanDev('can0')
+dev = SocketCanDev('vcan0')
 dev.start()
+
+dev_send = SocketCanDev('vcan1')
+dev_send.start()
 
 DECODER = {
     "messages": [
@@ -333,14 +336,14 @@ while True:
     data = frame._data
     timestamp = frame.timestamp
     hbeam_id = 0x83
-    if code == hbeam_id and data[0] == 0x40:
+    if code == hbeam_id and data[0] == 0x00:
         filter = True
     elif code == hbeam_id and data[0] == 0x00:
         filter = False
 
     if filter:
         msg = '(%s) %s#%s' % (timestamp, code, data)
-
+        dev_send.send(frame)
         if code == 0x3A8:
             signals = b.parse_frame(frame)
             if signals:
