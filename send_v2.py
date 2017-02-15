@@ -65,5 +65,6 @@ if __name__=="__main__":
             for i in range(frame_repeat_times):
                 ch0.write(arb_id, data)
                 time.sleep(frame_repeat_period)
+                print arb_id, data
         except (canlib.canError) as ex:
             print(ex)
