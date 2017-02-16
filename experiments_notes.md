@@ -28,13 +28,9 @@ The command made the steeering wheel move a little bit. However, the pre-collisi
 
 Apparently, the previous command move a little bit the steering wheel, but not always move it with the same angle 
 
-playing the frames with the following ids:
+Playing the frames from amarillo.log, using frame_repeat_period 0.01 and frame_repeat_times 1, provided the following results:
 
 * 415: Desactivated the transmission gear, reports speed, enable parking break.
-* 3CA: possible?
+* 3CA: possible command for steering control?
 * 216: moved GPS ?
 
-parameters used: 
-
-* frame_repeat_period 0.01
-* frame_repeat_times 1
