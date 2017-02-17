@@ -47,7 +47,13 @@ all ids tested for lane keep assist:
 
 '76#\|3A8#\|186#\|18A#\|085#\|091#\|092#\|3CA#\|422#\|3A8#\|167#\|202#\|78#\|217#\|047#\|165#\|200#\|202#\|204#\|230#\|085#\|091#\|3CD#\|3CA#\|082#'
 
+dangerous ids: 167#\|202#\|78#\|217#\|047#\|165#\|200#\|202#\|204#\|230#\|085#\|091#\|3CD#\|3CA#\|082#
+
 Today, we were re-playing dump files and removing ids every time. We were pruning ids until get the desired effect. The experiments were performed at the beach. We did the experiments for the lane keep assist and the controlling brake. 
 
-dangerous ids: 167#\|202#\|78#\|217#\|047#\|165#\|200#\|202#\|204#\|230#\|085#\|091#\|3CD#\|3CA#\|082#
+```sh
+cat ahorasilkas.log | grep -v '76#\|3A8#\|186#\|18A#\|085#\|091#\|092#\|3CA#\|422#\|3A8#\|167#\|202#\|415#\|78#\|217#\|047#\|165#\|200#\|202#\|204#\|230#\|085#\|091#\|3CD#\|3CA#' | canplayer -g 20
+```
+
+The previous command was used to remove ids in the logfile, and send the other using canplayer. We were adding patterns in grep command in order to discard not interesting ids
 
