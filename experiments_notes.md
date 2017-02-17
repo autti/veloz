@@ -15,7 +15,7 @@ Other notes:
 
 ##2017-02-16
 
-I tried this command
+I tried this command:
 
 ```sh
 cat candump_files/amarillo.log | awk -F " " '{print $3}' | grep '186#\|18A#\|085#\|091#\|092#\|3CA#\|422#\|3A8#\|167#\|202#' | python send_v2.py
@@ -28,9 +28,9 @@ The command made the steeering wheel move a little bit. However, the pre-collisi
 
 Apparently, the previous command move a little bit the steering wheel, but not always move it with the same angle 
 
-Playing the frames from amarillo.log, using frame_repeat_period 0.01 and frame_repeat_times 1, provided the following results:
+Playing the frames from amarillo.log, using *frame_repeat_period* 0.01 and *frame_repeat_times* 1, provided the following results:
 
-* 415: Desactivated the transmission gear, reports speed, enable parking break.
+* 76: It shows sort of a steering wheel angle report.
+* 415: Desactivated the transmission gear, reports speed, enable parking break in parking mode. It seems the command accelerates the car.
 * 3CA: possible command for steering control?
-* 216: moved GPS ?
-
+* 216: moved GPS ? it activated the sonars in the panel.
