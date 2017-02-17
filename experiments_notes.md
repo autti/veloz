@@ -34,3 +34,13 @@ Playing the frames from amarillo.log, using *frame_repeat_period* 0.01 and *fram
 * 415: Desactivated the transmission gear, reports speed, enable parking break in parking mode. It seems the command accelerates the car.
 * 3CA: possible command for steering control?
 * 216: moved GPS ? it activated the sonars in the panel.
+
+##2017-02-17
+
+The following ids were discovered:
+* 186: brake activated
+* 3D8: shows the lane keep assist
+
+* note: put arguments in python script !important
+
+dangerous ids: 167#\|202#\|78#\|217#\|047#\|165#\|200#\|202#\|204#\|230#\|085#\|091#\|3CD#\|3CA#\|082#

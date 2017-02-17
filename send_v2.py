@@ -46,13 +46,15 @@ def parse(frame):
 
 
 if __name__=="__main__":
-    ch0 = setUpChannel(0) 
     # perhaps we need to repeat every frame a number of times
     # before moving on to the next one, in order to silence the car's conflicting commands.
-    frame_repeat_period = 0.01
-    frame_repeat_times = 10
+
+    frame_repeat_period = float(sys.argv[1])
+    frame_repeat_times = int(sys.argv[2])
+    print("arguments",sys.argv[1],sys.argv[2])
     delay = frame_repeat_period *frame_repeat_times
 
+    ch0 = setUpChannel(0) 
     for line in sys.stdin:
         frame = line.strip()
 
@@ -65,6 +67,7 @@ if __name__=="__main__":
             for i in range(frame_repeat_times):
                 ch0.write(arb_id, data)
                 time.sleep(frame_repeat_period)
-                print arb_id, data
+                print hex(arb_id), data
         except (canlib.canError) as ex:
             print(ex)
+    print("frame_repeat_period",frame_repeat_period,"frame_repeat_times",frame_repeat_times)
