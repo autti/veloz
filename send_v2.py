@@ -1,3 +1,4 @@
+import click
 import sys
 import struct
 import time
@@ -45,23 +46,24 @@ def parse(frame):
     return int(str_id, 16), data           
 
 
-if __name__=="__main__":
+@click.command()
+@click.option('--frame_repeat_period', '-frp',default=0.01, help='period of time between can frames')
+@click.option('--frame_repeat_times', '-frt',default=1, help='number of times that you send the can frame')
+def main(frame_repeat_period, frame_repeat_times):
     # perhaps we need to repeat every frame a number of times
     # before moving on to the next one, in order to silence the car's conflicting commands.
 
-    frame_repeat_period = float(sys.argv[1])
-    frame_repeat_times = int(sys.argv[2])
-    print("arguments",sys.argv[1],sys.argv[2])
+    print("arguments", frame_repeat_period, frame_repeat_times)
     delay = frame_repeat_period *frame_repeat_times
 
-    ch0 = setUpChannel(0) 
+    ch0 = setUpChannel(0)
     for line in sys.stdin:
         frame = line.strip()
 
         # Ignore blank lines
         if len(frame) != 20:
             continue
-    
+
         arb_id, data = parse(frame)
         try:
             for i in range(frame_repeat_times):
@@ -71,3 +73,7 @@ if __name__=="__main__":
         except (canlib.canError) as ex:
             print(ex)
     print("frame_repeat_period",frame_repeat_period,"frame_repeat_times",frame_repeat_times)
+
+
+if __name__=="__main__":
+    main()
