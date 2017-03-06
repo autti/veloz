@@ -175,3 +175,8 @@ the command showed low visibility for the front camera
 ```sh
 echo "3D8#0000000088C5A830" | python send_v2.py -frp 0.01 -frt 1
 ```
+##2017-03-06
+
+* DO NOT MAKE EXPERIMENTS AGAIN WITH THE CAR STATIONARY 
+
+
