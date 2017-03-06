@@ -69,7 +69,7 @@ def main(frame_repeat_period, frame_repeat_times):
             for i in range(frame_repeat_times):
                 ch0.write(arb_id, data)
                 time.sleep(frame_repeat_period)
-                print hex(arb_id), data
+                print(hex(arb_id), data)
         except (canlib.canError) as ex:
             print(ex)
     print("frame_repeat_period",frame_repeat_period,"frame_repeat_times",frame_repeat_times)

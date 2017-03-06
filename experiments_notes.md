@@ -57,3 +57,121 @@ cat ahorasilkas.log | grep -v '76#\|3A8#\|186#\|18A#\|085#\|091#\|092#\|3CA#\|42
 
 The previous command was used to remove ids in the logfile, and send the other using canplayer. We were adding patterns in grep command in order to discard not interesting ids
 
+##2017-03-04
+
+We used this command to try to see the moves of the steering wheel
+
+```sh
+cat candump_files/amarillo.log | awk -F " " '{print $3}' | grep -v '415#\|091#' | python send_v2.py -frp 0.0005 -frt 1
+```
+the command didn't show any good response for the steering wheel.
+
+We tried something different. We stayed in the car with the brake pressed  and used the following command
+
+```sh
+cat candump_files/amarillo.log | awk -F " " '{print $3}' | grep  -v '415#' | python send_v2.py -frp 0.0004 -frt 1
+```
+We saw the steering wheel move a little bit, but in that experiment the steering wheel was turned to the right.
+
+With this command the car disables many systems
+```sh
+cat candump_files/amarillo.log | awk -F " " '{print $3}' | grep  -v '415#\|077#' | python send_v2.py -frp 0.0005 -frt 1
+```
+
+With this command the car does not disable the systems but makes weird sounds with the transmission. Apparently the message id 91# is related with the disabling the systems. We turned on the car and move the steering wheel after using this command and the systems were damaged.
+
+```sh
+cat candump_files/amarillo.log | awk -F " " '{print $3}' | grep  -v '415#\|077#\|091#' | python send_v2.py -frp 0.0005 -frt 1
+```
+
+Staying in a slope we executed the following command and the car got accelerated and moved a little bit forward the sppedometer. However, maybe it is not the command to control the speed.
+
+```sh
+cat candump_files/amarillo.log | awk -F " " '{print $3}' | grep '415#' | python send_v2.py -frp 0.01 -frt 1
+```
+
+##2017-03-05
+
+We tried to change the colors of the Lane Keep Assist using the ID `3D8`. The following command put green in the left line and yellow in the right line, but additionally activated hibeam.
+
+```sh
+echo "3D8#0000000080C5A840" | python send_v2.py -frp 0.01 -frt 1
+echo "3D8#0000000080C5A850" | python send_v2.py -frp 0.01 -frt 1
+echo "3D8#0000000080C5A860" | python send_v2.py -frp 0.01 -frt 1
+echo "3D8#0000000080C5A870" | python send_v2.py -frp 0.01 -frt 1
+```
+
+We tried the following command. The car showed a message telling me "keep hands in the steering wheel" and also showed the green and yellow lines.
+
+```sh
+echo "3D8#0000000080C5AA30" | python send_v2.py -frp 0.01 -frt 1
+echo "3D8#0000000080C5AB30" | python send_v2.py -frp 0.01 -frt 1
+```
+The command does not show the message, but it shows the the green and the yellow lines.
+
+```sh
+echo "3D8#0000000080C5AE30" | python send_v2.py -frp 0.01 -frt 1
+echo "3D8#0000000080C5AF30" | python send_v2.py -frp 0.01 -frt 1
+```
+
+The command does not show the green and the yellow lines
+```sh
+echo "3D8#0000000080C5A730" | python send_v2.py -frp 0.01 -frt 1
+echo "3D8#0000000080C5A630" | python send_v2.py -frp 0.01 -frt 1
+echo "3D8#0000000080C5A530" | python send_v2.py -frp 0.01 -frt 1
+echo "3D8#0000000080C5A430" | python send_v2.py -frp 0.01 -frt 1
+echo "3D8#0000000080C5C830" | python send_v2.py -frp 0.01 -frt 1
+echo "3D8#0000000080C5D830" | python send_v2.py -frp 0.01 -frt 1
+echo "3D8#0000000080C5E830" | python send_v2.py -frp 0.01 -frt 1
+echo "3D8#0000000080C5F830" | python send_v2.py -frp 0.01 -frt 1
+```
+
+the command put the right line in green
+```sh
+echo "3D8#0000000080C53830" | python send_v2.py -frp 0.01 -frt 1
+```
+
+the command put the right line in green and the left line in yellow
+```sh
+echo "3D8#0000000080C54830" | python send_v2.py -frp 0.01 -frt 1
+```
+
+the command put the left line in green
+```sh
+echo "3D8#0000000080C55830" | python send_v2.py -frp 0.01 -frt 1
+```
+
+the command put the left line in red
+```sh
+echo "3D8#0000000080C56830" | python send_v2.py -frp 0.01 -frt 1
+```
+
+the command put the right line in red
+```sh
+echo "3D8#0000000080C58830" | python send_v2.py -frp 0.01 -frt 1
+```
+
+the command showed a warning of alert tired driver rest sugested
+```sh
+echo "3D8#0000000080C8A830" | python send_v2.py -frp 0.01 -frt 1
+```
+
+the command showed a message of rest now
+```sh
+echo "3D8#0000000080F5A830" | python send_v2.py -frp 0.01 -frt 1
+```
+
+the command showed the status of lane keep assist
+```sh
+echo "3D8#0000000080F5A830" | python send_v2.py -frp 0.01 -frt 1
+```
+
+the command showed the status of the front camera
+```sh
+echo "3D8#0000000084C5A830" | python send_v2.py -frp 0.01 -frt 1
+```
+
+the command showed low visibility for the front camera
+```sh
+echo "3D8#0000000088C5A830" | python send_v2.py -frp 0.01 -frt 1
+```
