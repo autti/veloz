@@ -190,3 +190,9 @@ The main goal is to make a bridge between the two CANable devices and expect tha
 * Using can-utils tools from linux
 * Using canard with python 
 * Creating a firmware for the CANable device
+
+If we want to test this, before going to the car, we can use the kvaser interface and another laptop to simulate the car. Currently, it is neccesary to create a female db9 - female db9 connector to connect the kvaser and the CANable device (see Figure below) 
+
+![Alt Text](./images/plan_female.png)
+
+However, it is mandatory to test the bridge between the two can buses virtually.
