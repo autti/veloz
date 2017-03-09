@@ -181,7 +181,7 @@ echo "3D8#0000000088C5A830" | python send_v2.py -frp 0.01 -frt 1
 
 ##2017-03-09
 
-*plan1:* Connect two CANable devices, one for the car and the other for the lane keep assist. The two CANable are going to the be connected by a Laptop (see Figure below)
+**plan1:** Connect two CANable devices, one for the car and the other for the lane keep assist. The two CANable are going to the be connected by a Laptop (see Figure below)
 
 ![Alt Text](./images/plan1.png)
 
