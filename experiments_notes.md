@@ -196,3 +196,57 @@ If we want to test this, before going to the car, we can use the kvaser interfac
 ![Alt Text](./images/plan_female.png)
 
 However, it is mandatory to test the bridge between the two can buses virtually.
+
+##2017-03-10
+
+Using lkast_activated.log and going at 60 ~ 70 km/h we sent different commands like this:
+
+```sh
+cat doblada_firme.log | awk -F " " '{print $3}' | grep '202#' | python send_v2.py -frp 0.01 -frt 1
+```
+We calculated the period for each message ID according to the total time captured (6.2 seconds) and the number of times that the id appeared in the candump file. We put this value as an argument of the python script. Here are the commands we used for today. 
+
+```sh
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '3CC#' | python send_v2.py -frp 0.029 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '78#' | python send_v2.py -frp 0.0165 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '430#' | python send_v2.py -frp 0.0984 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '3D8#' | python send_v2.py -frp 0.6888 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '4B0#' | python send_v2.py -frp 0.0198 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '431#' | python send_v2.py -frp 1.033 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '42F#' | python send_v2.py -frp 0.0298 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '41D#' | python send_v2.py -frp 0.0198 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '416#' | python send_v2.py -frp 0.0984 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '415#' | python send_v2.py -frp 0.0198 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '40A#' | python send_v2.py -frp 0.1938 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '4CA#' | python send_v2.py -frp 0.02966 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '3C3#' | python send_v2.py -frp 1.033 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '3B3#' | python send_v2.py -frp 0.51666 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '3A8#' | python send_v2.py -frp 0.0198 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '3A7#' | python send_v2.py -frp 0.200 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '3A6#' | python send_v2.py -frp 0.200 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '2A1#' | python send_v2.py -frp 0.100 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '217#' | python send_v2.py -frp 0.0098 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '216#' | python send_v2.py -frp 0.0198 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '242#' | python send_v2.py -frp 0.0395 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '214#' | python send_v2.py -frp 0.0198 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '213#' | python send_v2.py -frp 0.0198 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '204#' | python send_v2.py -frp 0.0099 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '202#' | python send_v2.py -frp 0.0099 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '18A#' | python send_v2.py -frp 0.0984 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '187#' | python send_v2.py -frp 0.0196 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '186#' | python send_v2.py -frp 0.0196 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '178#' | python send_v2.py -frp 0.0984 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '169#' | python send_v2.py -frp 1.03333 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '167#' | python send_v2.py -frp 0.0099 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '165#' | python send_v2.py -frp 0.0198 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '92#' | python send_v2.py -frp 0.0099 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '91#' | python send_v2.py -frp 0.00999 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '85#' | python send_v2.py -frp 0.0098 -frt 1
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '85#' | python send_v2.py -frp 0.001 -frt 2
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '85#' | python send_v2.py -frp 0.001 -frt 5
+cat lkast_activated.log | awk -F " " '{print $3}' | grep '85#' | python send_v2.py -frp 0.001 -frt 10
+```
+
+Results:
+* Message ID 85 is related with decreasing the speed of the car. We sent several and it damaged the systems (Collision systems, brake slope assist, Advancetrac).
+* Message ID 415 can simulate the speed of the car and make believe the cruise control that the car is a certain speed.
