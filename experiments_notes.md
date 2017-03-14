@@ -250,3 +250,16 @@ cat lkast_activated.log | awk -F " " '{print $3}' | grep '85#' | python send_v2.
 Results:
 * Message ID 85 is related with decreasing the speed of the car. We sent several and it damaged the systems (Collision systems, brake slope assist, Advancetrac).
 * Message ID 415 can simulate the speed of the car and make believe the cruise control that the car is a certain speed.
+
+##2017-03-13
+
+We removed the front camera from the car and tried to make a bridge. We recorded a candump file and took all the commands reported by the front camera. CAN packets coming from the camera:
+
+```sh
+3CA#FF80080000000000
+3D8#000000000145F020
+3CD#0000000000000000
+3CA#FF80080000000000
+```
+
+
