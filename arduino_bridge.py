@@ -48,7 +48,7 @@ def format_message(arduino_string):
 
 @click.command()
 def main():
-    ser = serial.Serial('/dev/ttyACM0', 115200)
+    ser = serial.Serial('/dev/ttyACM2', 115200)
     while True:
         arduino_received = ser.readline()
         arduino_received = str(arduino_received)
